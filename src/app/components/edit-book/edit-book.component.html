@@ -1,0 +1,14 @@
+<div class="container">
+  <h2>Modification d'un livre</h2>
+<form [formGroup]="editBookForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="title">Titre</label>
+    <input type="text" id="title" formControlName="title" class="form-control">
+    <label for="coverText">CoverText</label>
+    <input type="text" id="coverText" formControlName="coverText" class="form-control">
+    <label for="comment">Commentaire</label>
+    <input type="text" id="comment" formControlName="comment" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-success my-2">Mettre à jour</button>
+</form>
+</div>

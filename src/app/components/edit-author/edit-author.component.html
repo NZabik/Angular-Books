@@ -1,0 +1,12 @@
+<div class="container">
+  <h2>Modification d'un auteur</h2>
+<form [formGroup]="editAuthorForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="firstName">prénom</label>
+    <input type="text" id="firstName" formControlName="firstName" class="form-control">
+    <label for="lastName">Nom</label>
+    <input type="text" id="lastName" formControlName="lastName" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-success my-2">Mettre à jour</button>
+</form>
+</div>

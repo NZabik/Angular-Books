@@ -1,0 +1,15 @@
+<div class="container">
+<h1>login</h1>
+<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+  <div>
+    <label class="form-label" for="email">Email:</label>
+    <input class="form-control" type="email" formControlName="email" id="email" required>
+  </div>
+  <div>
+    <label class="form-label" for="password">Password:</label>
+    <input class="form-control" type="password" formControlName="password" id="password" required>
+  </div>
+  <button class="btn btn-success my-2" type="submit" [disabled]="!loginForm.valid">Connexion</button>
+</form>
+<button class="btn btn-danger my-2" (click)="logout()">Déconnexion</button>
+</div>

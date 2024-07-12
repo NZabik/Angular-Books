@@ -1,0 +1,10 @@
+<div class="container">
+  <h2>Ajout d'un auteur</h2>
+  <form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
+    <label class="form-label" for="firstName">Prénom</label>
+    <input class="form-control" formControlName="firstName" placeholder="Prénom" />
+    <label class="form-label" for="lastName">Nom</label>
+    <input class="form-control" formControlName="lastName" placeholder="Nom" />
+    <button class="btn btn-success my-2" type="submit">Ajouter l'auteur'</button>
+  </form>
+</div>

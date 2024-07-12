@@ -1,0 +1,16 @@
+<div class="container">
+  <h2>Ajout d'un livre</h2>
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <label class="form-label" for="title">Titre du livre</label>
+    <input class="form-control" formControlName="title" placeholder="Titre du livre" />
+    <label class="form-label" for="coverText">Texte de couverture</label>
+    <input class="form-control" formControlName="coverText" placeholder="Texte de couverture" />
+    <label class="form-label" for="comment">Commentaire</label>
+    <input class="form-control" formControlName="comment" placeholder="Commentaire" />
+    <label class="form-label" for="authorId">Auteur</label>
+    <select class="form-control" formControlName="idAuthor">
+      <option *ngFor="let author of authors" [value]="author.id">{{ author.lastName }}</option>
+    </select>
+    <button class="btn btn-success my-2" type="submit">Ajouter le livre</button>
+  </form>
+</div>
