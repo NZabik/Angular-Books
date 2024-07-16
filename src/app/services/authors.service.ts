@@ -12,61 +12,28 @@ export class AuthorsService {
   constructor(private httpClient: HttpClient) {}
 
   getAuthors(): Observable<Author[]> {
-    // Récupérer le token stocké localement
-    const token = localStorage.getItem('currentUserToken');
 
-    // Créer les headers de la requête, incluant le token d'authentification
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-    return this.httpClient.get<Author[]>(`${this.apiURL}/authors`, { headers });
+    return this.httpClient.get<Author[]>(`${this.apiURL}/authors`);
   }
 
   getAuthorById(id: number): Observable<Author> {
-    // Récupérer le token stocké localement
-    const token = localStorage.getItem('currentUserToken');
 
-    // Créer les headers de la requête, incluant le token d'authentification
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-    return this.httpClient.get<Author>(`${this.apiURL}/authors/${id}`, { headers });
+    return this.httpClient.get<Author>(`${this.apiURL}/authors/${id}`);
   }
 
   addAuthor(author: Author): Observable<Author> {
-    // Récupérer le token stocké localement
-    const token = localStorage.getItem('currentUserToken');
 
-    // Créer les headers de la requête, incluant le token d'authentification
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-
-    return this.httpClient.post<Author>(`${this.apiURL}/authors`, author, { headers });
+    return this.httpClient.post<Author>(`${this.apiURL}/authors`, author);
   }
 
   deleteAuthor(id: number): Observable<Author> {
-    // Récupérer le token stocké localement
-    const token = localStorage.getItem('currentUserToken');
 
-    // Créer les headers de la requête, incluant le token d'authentification
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-
-    return this.httpClient.delete<Author>(`${this.apiURL}/authors/${id}`, { headers });
+    return this.httpClient.delete<Author>(`${this.apiURL}/authors/${id}`);
   }
 
   updateAuthor(author: Author): Observable<Author> {
-    // Récupérer le token stocké localement
-    const token = localStorage.getItem('currentUserToken');
 
-    // Créer les headers de la requête, incluant le token d'authentification
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-
-    return this.httpClient.put<Author>(`${this.apiURL}/authors/${author.id}`, author, { headers });
+    return this.httpClient.put<Author>(`${this.apiURL}/authors/${author.id}`, author);
   }
 
 }

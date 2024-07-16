@@ -12,61 +12,27 @@ export class BooksService {
   constructor(private httpClient: HttpClient) {}
 
   getBooks(): Observable<Book[]> {
-    // Récupérer le token stocké localement
-    const token = localStorage.getItem('currentUserToken');
 
-    // Créer les headers de la requête, incluant le token d'authentification
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-
-    return this.httpClient.get<Book[]>(`${this.apiURL}/books`, { headers });
+    return this.httpClient.get<Book[]>(`${this.apiURL}/books`);
   }
   getBookById(id: number): Observable<Book> {
-    // Récupérer le token stocké localement
-    const token = localStorage.getItem('currentUserToken');
 
-    // Créer les headers de la requête, incluant le token d'authentification
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-    return this.httpClient.get<Book>(`${this.apiURL}/books/${id}`, { headers });
+    return this.httpClient.get<Book>(`${this.apiURL}/books/${id}`);
   }
 
   addBook(book: Book): Observable<Book> {
-    // Récupérer le token stocké localement
-    const token = localStorage.getItem('currentUserToken');
 
-    // Créer les headers de la requête, incluant le token d'authentification
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-
-    return this.httpClient.post<Book>(`${this.apiURL}/books`, book, { headers });
+    return this.httpClient.post<Book>(`${this.apiURL}/books`, book);
   }
 
   deleteBook(id: number): Observable<Book> {
-    // Récupérer le token stocké localement
-    const token = localStorage.getItem('currentUserToken');
 
-    // Créer les headers de la requête, incluant le token d'authentification
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-
-    return this.httpClient.delete<Book>(`${this.apiURL}/books/${id}`, { headers });
+    return this.httpClient.delete<Book>(`${this.apiURL}/books/${id}`);
   }
 
   updateBook(book: Book): Observable<Book> {
-    // Récupérer le token stocké localement
-    const token = localStorage.getItem('currentUserToken');
 
-    // Créer les headers de la requête, incluant le token d'authentification
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-
-    return this.httpClient.put<Book>(`${this.apiURL}/books/${book.id}`, book, { headers });
+    return this.httpClient.put<Book>(`${this.apiURL}/books/${book.id}`, book);
   }
 
 }

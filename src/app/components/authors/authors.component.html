@@ -2,36 +2,38 @@
   <h1>Auteurs</h1>
   @if (user && user.roles.includes('ROLE_ADMIN')) {
   <a class="btn btn-outline-primary" routerLink="/addAuthor">Ajouter</a>}
-  @if (isUserLoggedIn) {
-  @for (item of authors; track $index) {
-  <div class="border p-2 my-2 d-flex justify-content-between" style="width: 600px;">
-    <div>
+  <div class="grid gap-2 column-gap-3 d-flex flex-wrap justify-content-center mt-5">
+    @if (isUserLoggedIn) {
+    @for (item of authors; track $index) {
+    <div class="border p-2 my-2 d-flex justify-content-between cardAuthor" style="width: 600px;">
       <div>
-        <p><strong>Prénom: </strong>{{item.firstName}}</p>
-        <p><strong>Nom: </strong>{{item.lastName}}</p>
-      </div>
-
-      @if (item.books) {
-      @for (book of item.books; track $index) {
-      <div class="border p-2" style="width: 400px;">
-        <p><strong>Livre {{$index + 1}}:</strong></p>
         <div>
-          <p><strong>Titre: </strong>{{ book.title }}</p>
-          <p><strong>CoverText: </strong>{{ book.coverText }}</p>
+          <p><strong>Prénom: </strong>{{item.firstName}}</p>
+          <p><strong>Nom: </strong>{{item.lastName}}</p>
         </div>
+
+        @if (item.books) {
+        @for (book of item.books; track $index) {
+        <div class="border p-2 cardBook" style="width: 400px;">
+          <p><strong>Livre {{$index + 1}}:</strong></p>
+          <div>
+            <p><strong>Titre: </strong>{{ book.title }}</p>
+            <p><strong>CoverText: </strong>{{ book.coverText }}</p>
+          </div>
+        </div>
+        }}
       </div>
-      }}
+      @if (user.roles.includes('ROLE_ADMIN')) {
+      <div class="d-flex flex-column justify-content-center">
+        <button class="btn btn-warning my-2" (click)="editAuthor(item.id)">Éditer</button>
+        <button class="btn btn-danger my-2" (click)="deleteAuthor(item.id)">supprimer</button>
+      </div>}
     </div>
-    @if (user.roles.includes('ROLE_ADMIN')) {
-    <div class="d-flex flex-column justify-content-center">
-      <button class="btn btn-warning my-2" (click)="editAuthor(item.id)">Éditer</button>
-      <button class="btn btn-danger my-2" (click)="deleteAuthor(item.id)">supprimer</button>
-    </div>}
+    } @empty {
+    <p>No authors found</p>
+    }
+    }@else {
+    <p>Vous devez être connecté pour voir les auteurs</p>
+    }
   </div>
-  } @empty {
-  <p>No authors found</p>
-  }
-  }@else {
-  <p>Vous devez être connecté pour voir les auteurs</p>
-  }
 </div>

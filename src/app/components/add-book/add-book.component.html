@@ -8,7 +8,8 @@
     <label class="form-label" for="comment">Commentaire</label>
     <input class="form-control" formControlName="comment" placeholder="Commentaire" />
     <label class="form-label" for="authorId">Auteur</label>
-    <select class="form-control" formControlName="idAuthor">
+    <select class="form-control" formControlName="idAuthor" placeholder="Choisissez un auteur">
+      <option value="" disabled selected>Choisissez un auteur</option>
       <option *ngFor="let author of authors" [value]="author.id">{{ author.lastName }}</option>
     </select>
     <button class="btn btn-success my-2" type="submit">Ajouter le livre</button>
