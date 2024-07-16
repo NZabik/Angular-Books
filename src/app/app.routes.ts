@@ -7,6 +7,7 @@ import { AddAuthorComponent } from './components/add-author/add-author.component
 import { EditAuthorComponent } from './components/edit-author/edit-author.component';
 import { EditBookComponent } from './components/edit-book/edit-book.component';
 import { AuthGuard } from './auth.guard';
+import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: '', pathMatch: 'full'},
@@ -17,6 +18,7 @@ export const routes: Routes = [
   {path: 'addAuthor', canActivate: [AuthGuard], component: AddAuthorComponent},
   {path: 'editAuthor/:id', canActivate: [AuthGuard], component: EditAuthorComponent},
   {path: 'editBook/:id', canActivate: [AuthGuard], component: EditBookComponent},
+  {path: 'register', component: UserRegistrationComponent},
   {path: '**', redirectTo: '/'}
 
 ];

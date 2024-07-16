@@ -1,0 +1,10 @@
+<div class="container">
+  <h2>Création de compte</h2>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <label class="form-label" for="email">Email</label>
+    <input class="form-control" formControlName="email" placeholder="Email" />
+    <label class="form-label" for="password">Mot de passe</label>
+    <input class="form-control" formControlName="password" placeholder="Mot de passe" />
+    <button class="btn btn-success my-2" type="submit">Créer mon compte</button>
+  </form>
+</div>

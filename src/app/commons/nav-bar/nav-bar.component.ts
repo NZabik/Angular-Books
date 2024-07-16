@@ -11,7 +11,7 @@ import { LoginService } from '../../services/login.service';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent implements OnInit, OnDestroy {
-
+  user!: any;
   isUserLoggedIn: boolean = false;
   private authSubscription!: Subscription;
   constructor(private loginService: LoginService, private router: Router) {}
@@ -27,6 +27,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
     this.authSubscription = this.loginService.isLoggedInObservable.subscribe(
       (isLoggedIn) => {
         this.isUserLoggedIn = isLoggedIn;
+        this.user = this.loginService.decodeToken();
       }
     );
   }
