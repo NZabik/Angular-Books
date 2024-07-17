@@ -50,6 +50,9 @@ export class BooksComponent implements OnInit, OnDestroy {
       }
     );
     if (this.loginService.isLoggedIn()) {
+      this.booksService.bookAdded$.subscribe((book: Book) => {
+        this.books.push(book);
+      });
       this.booksService.getBooks().subscribe((books) => {
         this.books = books;
       });

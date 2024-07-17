@@ -19,7 +19,7 @@ export class AuthorsComponent implements OnInit, OnDestroy {
   user!: any;
   constructor(
     private loginService: LoginService,
-    private authorsService: AuthorsService,
+    private authorService: AuthorsService,
     private router: Router
   ) {
     this.user = this.loginService.decodeToken();
@@ -27,7 +27,7 @@ export class AuthorsComponent implements OnInit, OnDestroy {
 
   deleteAuthor(id: number) {
     if (confirm('Voulez-vous vraiment supprimer ce livre ?')) {
-      this.authorsService.deleteAuthor(id).subscribe({
+      this.authorService.deleteAuthor(id).subscribe({
         next: () => {
           this.authors = this.authors.filter((author) => author.id !== id);
         },
@@ -51,7 +51,10 @@ export class AuthorsComponent implements OnInit, OnDestroy {
       }
     );
     if (this.loginService.isLoggedIn()) {
-      this.authorsService.getAuthors().subscribe((authors) => {
+      this.authorService.authorAdded$.subscribe((author: Author) => {
+        this.authors.push(author);
+      });
+      this.authorService.getAuthors().subscribe((authors) => {
         this.authors = authors;
       });
     }

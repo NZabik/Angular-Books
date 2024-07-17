@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import Author from '../models/author.model';
 
 @Injectable({
@@ -9,6 +9,12 @@ import Author from '../models/author.model';
 export class AuthorsService {
   private apiURL = 'http://127.0.0.1:8000/api';
 
+  private authorAddedSource = new Subject<Author>();
+  authorAdded$ = this.authorAddedSource.asObservable();
+
+  authorAdded(author: Author) {
+    this.authorAddedSource.next(author);
+  }
   constructor(private httpClient: HttpClient) {}
 
   getAuthors(): Observable<Author[]> {

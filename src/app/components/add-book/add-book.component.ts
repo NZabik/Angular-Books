@@ -1,22 +1,23 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { LoginService } from '../../services/login.service';
+import { Component, OnInit } from '@angular/core';
 import { BooksService } from '../../services/books.service';
-import { Subscription } from 'rxjs';
 import Book from '../../models/book.model';
 import Author from '../../models/author.model';
 import { Router, RouterLink } from '@angular/router';
 import { AuthorsService } from '../../services/authors.service';
 import {
+  FormsModule,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AddAuthorComponent } from '../add-author/add-author.component';
+
 @Component({
   selector: 'app-add-book',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, AddAuthorComponent, FormsModule],
   templateUrl: './add-book.component.html',
   styleUrl: './add-book.component.css',
 })
@@ -24,6 +25,7 @@ export class AddBookComponent implements OnInit {
   bookForm: FormGroup;
   authors: Author[] = [];
   books: Book[] = [];
+  selectedAuthor: Author | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -40,7 +42,11 @@ export class AddBookComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authorService.authorAdded$.subscribe((author: Author) => {
+      this.authors.push(author);
+    });
     this.loadAuthors();
+
   }
 
   loadAuthors(): void {
@@ -54,9 +60,10 @@ export class AddBookComponent implements OnInit {
       this.bookService.addBook(this.bookForm.value).subscribe({
         next: (response) => {
           alert('Livre ajouté avec succès');
+          this.bookService.bookAdded(response);
           this.books.push(response);
           this.bookForm.reset();
-          // this.router.navigate(['/books']);
+          this.router.navigate(['/books']);
         },
         error: (error) => {
           console.error("Erreur lors de l'ajout du livre", error);

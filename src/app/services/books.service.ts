@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import Book from '../models/book.model';
 
 @Injectable({
@@ -9,6 +9,12 @@ import Book from '../models/book.model';
 export class BooksService {
   private apiURL = 'http://127.0.0.1:8000/api';
 
+  private bookAddedSource = new Subject<Book>();
+  bookAdded$ = this.bookAddedSource.asObservable();
+
+  bookAdded(book: Book) {
+    this.bookAddedSource.next(book);
+  }
   constructor(private httpClient: HttpClient) {}
 
   getBooks(): Observable<Book[]> {

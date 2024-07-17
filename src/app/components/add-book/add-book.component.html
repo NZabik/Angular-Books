@@ -8,10 +8,21 @@
     <label class="form-label" for="comment">Commentaire</label>
     <input class="form-control" formControlName="comment" placeholder="Commentaire" />
     <label class="form-label" for="authorId">Auteur</label>
+    <button class="btn btn-sm btn-primary m-2" data-bs-toggle="modal" data-bs-target="#addAuthorModal">Ajouter un auteur</button>
     <select class="form-control" formControlName="idAuthor" placeholder="Choisissez un auteur">
       <option value="" disabled selected>Choisissez un auteur</option>
-      <option *ngFor="let author of authors" [value]="author.id">{{ author.lastName }}</option>
+      <option *ngFor="let author of authors" [value]="author.id">{{ author.lastName }} {{ author.firstName }}</option>
     </select>
     <button class="btn btn-success my-2" type="submit">Ajouter le livre</button>
   </form>
+</div>
+<!-- Modale AddAuthor avec Bootstrap -->
+<div class="modal fade" id="addAuthorModal" tabindex="-1" role="dialog" aria-labelledby="addAuthorModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <app-add-author></app-add-author>
+      </div>
+    </div>
+  </div>
 </div>

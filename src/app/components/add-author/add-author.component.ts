@@ -32,9 +32,10 @@ onSubmit(): void {
       this.authorService.addAuthor(this.authorForm.value).subscribe({
         next: (response) => {
           alert('Auteur ajouté avec succès');
+          this.authorService.authorAdded(response);
           this.authors.push(response);
           this.authorForm.reset();
-          this.router.navigate(['/authors']);
+          // this.router.navigate(['/authors']);
         },
         error: (error) => {
           console.log(error);
